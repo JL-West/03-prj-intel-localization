@@ -148,25 +148,73 @@
   <p>Scroll to view timeline | Hover over cards to learn more!</p>
     <!-- Subscription Form Section Start -->
     <!--
-      This section uses Bootstrap's form classes to create a simple newsletter subscription form.
-      - 'container' centers the form and adds padding.
-      - 'form-label', 'form-control', and 'btn' are Bootstrap classes for styling.
-      - The form is responsive and accessible.
+      This section uses Bootstrap's form classes to create a newsletter subscription form with extra fields.
+      The form is hidden by default and shown when the 'Subscribe' button is clicked.
+      Clicking the button again hides the form.
     -->
     <section class="container my-5">
       <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-          <form>
+          <!-- Toggle Button -->
+          <button id="toggle-subscribe" class="btn btn-primary w-100 mb-3" type="button">Subscribe</button>
+          <!-- Subscription Form (hidden by default) -->
+          <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="newsletter-name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="newsletter-name" placeholder="Enter your name">
+            </div>
+            <!-- Email Field -->
             <div class="mb-3">
               <label for="newsletter-email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="newsletter-email" placeholder="Enter your email" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+            <!-- Interests Field -->
+            <div class="mb-3">
+              <label for="newsletter-interests" class="form-label">Interests</label>
+              <select class="form-select" id="newsletter-interests" multiple>
+                <option>Sustainability</option>
+                <option>Products</option>
+                <option>Events</option>
+                <option>Careers</option>
+              </select>
+              <small class="form-text text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</small>
+            </div>
+            <!-- Country Field -->
+            <div class="mb-3">
+              <label for="newsletter-country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="newsletter-country" placeholder="Enter your country">
+            </div>
+            <!-- Consent Checkbox -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="newsletter-consent" required>
+              <label class="form-check-label" for="newsletter-consent">
+                I agree to receive emails and accept the <a href="#" target="_blank">privacy policy</a>.
+              </label>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Submit</button>
           </form>
         </div>
       </div>
     </section>
     <!-- Subscription Form Section End -->
+  <!-- Simple script to toggle the subscription form -->
+  <script>
+    // Get the button and form elements
+    const toggleBtn = document.getElementById('toggle-subscribe');
+    const form = document.getElementById('subscribe-form');
+    if (toggleBtn && form) {
+      toggleBtn.addEventListener('click', function() {
+        if (form.style.display === 'none') {
+          form.style.display = 'block';
+          toggleBtn.textContent = 'Close';
+        } else {
+          form.style.display = 'none';
+          toggleBtn.textContent = 'Subscribe';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
