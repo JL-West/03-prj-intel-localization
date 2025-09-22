@@ -243,12 +243,14 @@
 
     // Show spinner, airplane animation, and success alert on newsletter form submit
     document.getElementById('subscribe-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('newsletter-spinner').classList.remove('d-none');
-      setTimeout(function() {
-        document.getElementById('newsletter-spinner').classList.add('d-none');
-        // Airplane animation
-        // Show checkmark animation
+        e.preventDefault();
+        // Prevent scroll to top on submit
+        if (e && e.stopPropagation) e.stopPropagation();
+        document.activeElement && document.activeElement.blur();
+        document.getElementById('newsletter-spinner').classList.remove('d-none');
+        setTimeout(function() {
+          document.getElementById('newsletter-spinner').classList.add('d-none');
+          // Show checkmark animation
         var checkmark = document.getElementById('checkmark-animation');
         if (checkmark) {
           checkmark.style.opacity = '1';
@@ -261,6 +263,7 @@
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
       }, 1200);
+        return false;
     });
 
     // Auto-detect language and set direction
