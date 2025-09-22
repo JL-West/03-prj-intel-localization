@@ -15,6 +15,11 @@
     </div>
     <h1>Contact Us</h1>
     <p>If you have any questions or feedback, please fill out the form below:</p>
+    <!-- Success Alert (hidden by default) -->
+    <div id="contact-success" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+      <strong>Thank you!</strong> Your message has been sent. We appreciate your feedback.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <form id="contactForm">
       <div class="mb-3">
         <label for="contact-name" class="form-label">Name</label>
@@ -39,9 +44,15 @@
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
       });
-      // Show spinner on form submit
+      // Show spinner and thank you alert on form submit
       document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
         document.getElementById('spinner').classList.remove('d-none');
+        setTimeout(function() {
+          document.getElementById('spinner').classList.add('d-none');
+          document.getElementById('contact-success').classList.remove('d-none');
+          document.getElementById('contactForm').style.display = 'none';
+        }, 1200);
       });
     </script>
   </div>
