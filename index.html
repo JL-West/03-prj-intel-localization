@@ -164,20 +164,9 @@
           </div>
           <!-- Subscription Form (hidden by default) -->
           <!-- Success Alert removed: only airplane animation will show -->
-          <!-- Flower animation (hidden by default) -->
-          <div id="flower-animation" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%) scale(0.3); opacity: 0; z-index: 99999; pointer-events: none; transition: opacity 0.6s, transform 0.6s;">
-            <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="80" cy="80" r="22" fill="#FFD700"/>
-              <ellipse cx="80" cy="36" rx="20" ry="40" fill="#ff69b4"/>
-              <ellipse cx="80" cy="124" rx="20" ry="40" fill="#ff69b4"/>
-              <ellipse cx="36" cy="80" rx="40" ry="20" fill="#ff69b4"/>
-              <ellipse cx="124" cy="80" rx="40" ry="20" fill="#ff69b4"/>
-              <ellipse cx="50" cy="50" rx="18" ry="36" fill="#ffb6c1"/>
-              <ellipse cx="110" cy="50" rx="18" ry="36" fill="#ffb6c1"/>
-              <ellipse cx="50" cy="110" rx="18" ry="36" fill="#ffb6c1"/>
-              <ellipse cx="110" cy="110" rx="18" ry="36" fill="#ffb6c1"/>
-              <ellipse cx="80" cy="80" rx="60" ry="10" fill="#FFD700" opacity="0.15"/>
-            </svg>
+          <!-- Thank you message (hidden by default) -->
+          <div id="newsletter-thankyou" class="alert alert-success d-none mt-3" role="alert">
+            <strong>Thank you!</strong> You have subscribed to our newsletter.
           </div>
           <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
@@ -258,21 +247,13 @@
         document.getElementById('newsletter-spinner').classList.remove('d-none');
         setTimeout(function() {
           document.getElementById('newsletter-spinner').classList.add('d-none');
-          // Scroll to top and show flower animation
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          var flower = document.getElementById('flower-animation');
-          if (flower) {
-            setTimeout(function() {
-              flower.style.opacity = '1';
-              flower.style.transform = 'translateX(-50%) scale(1)';
-            }, 200);
-            setTimeout(function() {
-              flower.style.opacity = '0';
-              flower.style.transform = 'translateX(-50%) scale(0.3)';
-            }, 2600);
+          // Show thank you message
+          var thankyou = document.getElementById('newsletter-thankyou');
+          if (thankyou) {
+            thankyou.classList.remove('d-none');
           }
-        form.style.display = 'none';
-        toggleBtn.textContent = 'Subscribe';
+          form.style.display = 'none';
+          toggleBtn.textContent = 'Subscribe';
       }, 1200);
         return false;
     });
