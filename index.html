@@ -7,6 +7,12 @@
   <!-- Bootstrap 5.3.8 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6DQD1KQ9Q8cb1z9a+6ztQ5Jv1LGGCeGxkS1VKKR5q+8n" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+    @keyframes banner-flap {
+      0% { transform: skewY(-2deg); }
+      100% { transform: skewY(2deg); }
+    }
+  </style>
 </head>
 <body>
   <!-- Header/Hero Section Start -->
@@ -163,15 +169,16 @@
             <a href="contact.html" class="btn btn-outline-secondary" role="button">Contact</a>
           </div>
           <!-- Subscription Form (hidden by default) -->
-          <!-- Success Alert (hidden by default) -->
-          <div id="newsletter-success" class="alert alert-success alert-dismissible d-none" role="alert">
-            <strong>Thank you!</strong> You have subscribed to our newsletter.
-          </div>
-          <!-- Airplane animation (hidden by default) -->
-          <div id="airplane-animation" style="position: fixed; left: -80px; bottom: 120px; z-index: 9999; pointer-events: none; display: none;">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="0,30 60,15 60,25 20,35 20,45 60,55 60,45 0,30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
-            </svg>
+          <!-- Airplane + Banner animation (hidden by default) -->
+          <div id="airplane-banner" style="position: fixed; top: 40px; left: -200px; z-index: 99999; pointer-events: none; display: none; height: 60px;">
+            <div style="display: flex; align-items: center;">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0,30 60,15 60,25 20,35 20,45 60,55 60,45 0,30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
+              </svg>
+              <div id="banner-message" style="background: #007bff; color: #fff; font-weight: bold; font-size: 1.1em; padding: 10px 32px 10px 24px; border-radius: 0 30px 30px 0; margin-left: -10px; box-shadow: 2px 2px 8px rgba(0,0,0,0.08); white-space: nowrap; animation: banner-flap 1.2s linear infinite alternate;">
+                Thank you for subscribing!
+              </div>
+            </div>
           </div>
           <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
@@ -243,39 +250,43 @@
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-    // Show spinner, airplane animation, and success alert on newsletter form submit
+    // Show spinner, airplane+banner animation on newsletter form submit
     document.getElementById('subscribe-form').addEventListener('submit', function(e) {
       e.preventDefault();
       document.getElementById('newsletter-spinner').classList.remove('d-none');
       setTimeout(function() {
         document.getElementById('newsletter-spinner').classList.add('d-none');
-        // Airplane animation
-        var airplane = document.getElementById('airplane-animation');
-        if (airplane) {
-          airplane.style.display = 'block';
-          airplane.style.transition = 'none';
-          airplane.style.left = '-80px';
+        // Airplane + banner animation
+        var airplaneBanner = document.getElementById('airplane-banner');
+        if (airplaneBanner) {
+          airplaneBanner.style.display = 'block';
+          airplaneBanner.style.transition = 'none';
+          airplaneBanner.style.left = '-200px';
+          airplaneBanner.style.opacity = '1';
+          // Force reflow
+          void airplaneBanner.offsetWidth;
           setTimeout(function() {
-            airplane.style.transition = 'left 1.2s cubic-bezier(0.4,1.5,0.5,1)';
-            airplane.style.left = '100vw';
+            airplaneBanner.style.transition = 'left 1.6s cubic-bezier(0.4,1.5,0.5,1), opacity 0.3s linear 1.5s';
+            airplaneBanner.style.left = '100vw';
+            airplaneBanner.style.opacity = '0';
           }, 10);
           setTimeout(function() {
-            airplane.style.display = 'none';
-            airplane.style.left = '-80px';
-          }, 1300);
-        }
-        // Show and auto-hide the success alert
-        var successAlert = document.getElementById('newsletter-success');
-        if (successAlert) {
-          successAlert.classList.remove('d-none');
-          setTimeout(function() {
-            successAlert.classList.add('d-none');
-          }, 3000);
+            airplaneBanner.style.display = 'none';
+            airplaneBanner.style.transition = 'none';
+            airplaneBanner.style.left = '-200px';
+            airplaneBanner.style.opacity = '1';
+          }, 1800);
         }
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
       }, 1200);
     });
+  <style>
+    @keyframes banner-flap {
+      0% { transform: skewY(-2deg); }
+      100% { transform: skewY(2deg); }
+    }
+  </style>
 
     // Auto-detect language and set direction
     (function() {
