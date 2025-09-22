@@ -168,6 +168,12 @@
             <strong>Thank you!</strong> You have subscribed to our newsletter.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
+          <!-- Airplane animation (hidden by default) -->
+          <div id="airplane-animation" style="position: fixed; left: -80px; bottom: 120px; z-index: 9999; pointer-events: none; display: none;">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="0,30 60,15 60,25 20,35 20,45 60,55 60,45 0,30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
+            </svg>
+          </div>
           <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
             <!-- Name Field -->
@@ -238,12 +244,27 @@
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-    // Show spinner and success alert on newsletter form submit
+    // Show spinner, airplane animation, and success alert on newsletter form submit
     document.getElementById('subscribe-form').addEventListener('submit', function(e) {
       e.preventDefault();
       document.getElementById('newsletter-spinner').classList.remove('d-none');
       setTimeout(function() {
         document.getElementById('newsletter-spinner').classList.add('d-none');
+        // Airplane animation
+        var airplane = document.getElementById('airplane-animation');
+        if (airplane) {
+          airplane.style.display = 'block';
+          airplane.style.transition = 'none';
+          airplane.style.left = '-80px';
+          setTimeout(function() {
+            airplane.style.transition = 'left 1.2s cubic-bezier(0.4,1.5,0.5,1)';
+            airplane.style.left = '100vw';
+          }, 10);
+          setTimeout(function() {
+            airplane.style.display = 'none';
+            airplane.style.left = '-80px';
+          }, 1300);
+        }
         document.getElementById('newsletter-success').classList.remove('d-none');
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
