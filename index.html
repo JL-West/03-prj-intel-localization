@@ -164,10 +164,11 @@
           </div>
           <!-- Subscription Form (hidden by default) -->
           <!-- Success Alert removed: only airplane animation will show -->
-          <!-- Airplane animation (hidden by default) -->
-          <div id="airplane-animation" style="position: fixed; top: 40px; left: -80px; z-index: 99999; pointer-events: none; display: none;">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="0,30 60,15 60,25 20,35 20,45 60,55 60,45 0,30" fill="#007bff" stroke="#0056b3" stroke-width="2"/>
+          <!-- Checkmark animation (hidden by default) -->
+          <div id="checkmark-animation" style="position: fixed; top: 60px; left: 50%; transform: translateX(-50%) scale(0.5); opacity: 0; z-index: 99999; pointer-events: none; transition: opacity 0.3s, transform 0.3s;">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="30" stroke="#28a745" stroke-width="4" fill="#eafaf1"/>
+              <polyline points="18,34 28,44 46,22" fill="none" stroke="#28a745" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <form id="subscribe-form" style="display: none;">
@@ -247,22 +248,15 @@
       setTimeout(function() {
         document.getElementById('newsletter-spinner').classList.add('d-none');
         // Airplane animation
-        var airplane = document.getElementById('airplane-animation');
-        if (airplane) {
-          airplane.style.display = 'block';
-          airplane.style.transition = 'none';
-          airplane.style.transform = 'translateX(0)';
-          // Force reflow
-          void airplane.offsetWidth;
+        // Show checkmark animation
+        var checkmark = document.getElementById('checkmark-animation');
+        if (checkmark) {
+          checkmark.style.opacity = '1';
+          checkmark.style.transform = 'translateX(-50%) scale(1)';
           setTimeout(function() {
-            airplane.style.transition = 'transform 1.2s cubic-bezier(0.4,1.5,0.5,1)';
-            airplane.style.transform = 'translateX(calc(100vw + 100px))';
-          }, 10);
-          setTimeout(function() {
-            airplane.style.display = 'none';
-            airplane.style.transition = 'none';
-            airplane.style.transform = 'translateX(0)';
-          }, 1400);
+            checkmark.style.opacity = '0';
+            checkmark.style.transform = 'translateX(-50%) scale(0.5)';
+          }, 1800);
         }
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
