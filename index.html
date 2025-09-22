@@ -165,17 +165,18 @@
           <!-- Subscription Form (hidden by default) -->
           <!-- Success Alert removed: only airplane animation will show -->
           <!-- Flower animation (hidden by default) -->
-          <div id="flower-animation" style="position: fixed; top: 30px; left: 50%; transform: translateX(-50%) scale(0.5); opacity: 0; z-index: 99999; pointer-events: none; transition: opacity 0.4s, transform 0.4s;">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="10" fill="#FFD700"/>
-              <ellipse cx="40" cy="20" rx="8" ry="16" fill="#6FCF97"/>
-              <ellipse cx="40" cy="60" rx="8" ry="16" fill="#6FCF97"/>
-              <ellipse cx="20" cy="40" rx="16" ry="8" fill="#6FCF97"/>
-              <ellipse cx="60" cy="40" rx="16" ry="8" fill="#6FCF97"/>
-              <ellipse cx="25" cy="25" rx="7" ry="14" fill="#B5EAD7"/>
-              <ellipse cx="55" cy="25" rx="7" ry="14" fill="#B5EAD7"/>
-              <ellipse cx="25" cy="55" rx="7" ry="14" fill="#B5EAD7"/>
-              <ellipse cx="55" cy="55" rx="7" ry="14" fill="#B5EAD7"/>
+          <div id="flower-animation" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%) scale(0.3); opacity: 0; z-index: 99999; pointer-events: none; transition: opacity 0.6s, transform 0.6s;">
+            <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="80" r="22" fill="#FFD700"/>
+              <ellipse cx="80" cy="36" rx="20" ry="40" fill="#43d16c"/>
+              <ellipse cx="80" cy="124" rx="20" ry="40" fill="#43d16c"/>
+              <ellipse cx="36" cy="80" rx="40" ry="20" fill="#43d16c"/>
+              <ellipse cx="124" cy="80" rx="40" ry="20" fill="#43d16c"/>
+              <ellipse cx="50" cy="50" rx="18" ry="36" fill="#B5EAD7"/>
+              <ellipse cx="110" cy="50" rx="18" ry="36" fill="#B5EAD7"/>
+              <ellipse cx="50" cy="110" rx="18" ry="36" fill="#B5EAD7"/>
+              <ellipse cx="110" cy="110" rx="18" ry="36" fill="#B5EAD7"/>
+              <ellipse cx="80" cy="80" rx="60" ry="10" fill="#a3e635" opacity="0.2"/>
             </svg>
           </div>
           <form id="subscribe-form" style="display: none;">
@@ -267,8 +268,8 @@
             }, 200);
             setTimeout(function() {
               flower.style.opacity = '0';
-              flower.style.transform = 'translateX(-50%) scale(0.5)';
-            }, 2000);
+              flower.style.transform = 'translateX(-50%) scale(0.3)';
+            }, 2600);
           }
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
