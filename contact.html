@@ -8,23 +8,42 @@
 </head>
 <body style="background-color: #f0f6fa;">
   <div class="container my-5">
+    <!-- Dismissible Alert -->
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong>Contact Us!</strong> We value your feedback and questions.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <h1>Contact Us</h1>
     <p>If you have any questions or feedback, please fill out the form below:</p>
-    <form>
+    <form id="contactForm">
       <div class="mb-3">
         <label for="contact-name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="contact-name" placeholder="Your Name">
+        <input type="text" class="form-control" id="contact-name" placeholder="Your Name" data-bs-toggle="tooltip" title="Please enter your full name.">
       </div>
       <div class="mb-3">
         <label for="contact-email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="contact-email" placeholder="your@email.com">
+        <input type="email" class="form-control" id="contact-email" placeholder="your@email.com" data-bs-toggle="tooltip" title="We'll never share your email.">
       </div>
       <div class="mb-3">
         <label for="contact-message" class="form-label">Message</label>
-        <textarea class="form-control" id="contact-message" rows="4" placeholder="Type your message here..."></textarea>
+        <textarea class="form-control" id="contact-message" rows="4" placeholder="Type your message here..." data-bs-toggle="tooltip" title="Type your question or feedback."></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Send</button>
+      <button type="submit" class="btn btn-primary">
+        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+        Send
+      </button>
     </form>
+    <script>
+      // Enable Bootstrap tooltips
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+      // Show spinner on form submit
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('spinner').classList.remove('d-none');
+      });
+    </script>
   </div>
 </body>
 </html>

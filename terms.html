@@ -8,6 +8,11 @@
 </head>
 <body style="background-color: #f0f6fa;">
   <div class="container my-5">
+    <!-- Dismissible Alert -->
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong>Welcome!</strong> Please read our terms before using this site.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <h1>Terms of Use</h1>
     <p>By using this website, you agree to the following terms and conditions:</p>
     <ul>
@@ -16,10 +21,42 @@
       <li>All content is for informational purposes only and may change without notice.</li>
       <li>We are not responsible for any damages from using this site.</li>
     </ul>
-    <h2>Intellectual Property</h2>
-    <p>All content on this site belongs to its respective owners. Do not copy or reuse without permission.</p>
+    <!-- FAQ Accordion -->
+    <div class="accordion mb-4" id="termsAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="tfaq1-heading">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tfaq1" aria-expanded="true" aria-controls="tfaq1">
+            Can I copy content from this site?
+          </button>
+        </h2>
+        <div id="tfaq1" class="accordion-collapse collapse show" aria-labelledby="tfaq1-heading" data-bs-parent="#termsAccordion">
+          <div class="accordion-body">
+            All content belongs to its respective owners. Do not copy or reuse without permission.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="tfaq2-heading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tfaq2" aria-expanded="false" aria-controls="tfaq2">
+            What happens if I break the rules?
+          </button>
+        </h2>
+        <div id="tfaq2" class="accordion-collapse collapse" aria-labelledby="tfaq2-heading" data-bs-parent="#termsAccordion">
+          <div class="accordion-body">
+            We are not responsible for any damages from using this site. Please use the site for lawful purposes only.
+          </div>
+        </div>
+      </div>
+    </div>
     <h2>Contact Us</h2>
     <p>If you have questions about these terms, please use our <a href="contact.html">Contact</a> page.</p>
+    <script>
+      // Enable Bootstrap tooltips
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    </script>
   </div>
 </body>
 </html>

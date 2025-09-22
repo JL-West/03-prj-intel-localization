@@ -163,22 +163,27 @@
             <a href="contact.html" class="btn btn-outline-secondary" role="button">Contact</a>
           </div>
           <!-- Subscription Form (hidden by default) -->
+          <!-- Success Alert (hidden by default) -->
+          <div id="newsletter-success" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+            <strong>Thank you!</strong> You have subscribed to our newsletter.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
           <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
             <!-- Name Field -->
             <div class="mb-3">
               <label for="newsletter-name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="newsletter-name" placeholder="Jane/John Doe">
+              <input type="text" class="form-control" id="newsletter-name" placeholder="Jane/John Doe" data-bs-toggle="tooltip" title="Please enter your full name.">
             </div>
             <!-- Email Field -->
             <div class="mb-3">
               <label for="newsletter-email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="newsletter-email" placeholder="JD@example.com" required>
+              <input type="email" class="form-control" id="newsletter-email" placeholder="JD@example.com" required data-bs-toggle="tooltip" title="We'll never share your email.">
             </div>
             <!-- Interests Field -->
             <div class="mb-3">
               <label for="newsletter-interests" class="form-label">Interests</label>
-              <select class="form-select" id="newsletter-interests">
+              <select class="form-select" id="newsletter-interests" data-bs-toggle="tooltip" title="Choose your interests.">
                 <option selected>All</option>
                 <option>Sustainability</option>
                 <option>Products</option>
@@ -190,16 +195,19 @@
             <!-- Country Field -->
             <div class="mb-3">
               <label for="newsletter-country" class="form-label">Country</label>
-              <input type="text" class="form-control" id="newsletter-country" placeholder="United Kingdom">
+              <input type="text" class="form-control" id="newsletter-country" placeholder="United Kingdom" data-bs-toggle="tooltip" title="Where are you located?">
             </div>
             <!-- Consent Checkbox -->
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="newsletter-consent" required>
+              <input type="checkbox" class="form-check-input" id="newsletter-consent" required data-bs-toggle="tooltip" title="You must agree to subscribe.">
               <label class="form-check-label" for="newsletter-consent">
                 I agree to receive emails and accept the <a href="#" target="_blank">privacy policy</a>.
               </label>
             </div>
-            <button type="submit" class="btn btn-success w-100">Submit</button>
+            <button type="submit" class="btn btn-success w-100">
+              <span id="newsletter-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -223,6 +231,24 @@
         }
       });
     }
+
+    // Enable Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Show spinner and success alert on newsletter form submit
+    document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('newsletter-spinner').classList.remove('d-none');
+      setTimeout(function() {
+        document.getElementById('newsletter-spinner').classList.add('d-none');
+        document.getElementById('newsletter-success').classList.remove('d-none');
+        form.style.display = 'none';
+        toggleBtn.textContent = 'Subscribe';
+      }, 1200);
+    });
 
     // Auto-detect language and set direction
     (function() {
