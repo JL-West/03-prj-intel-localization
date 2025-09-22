@@ -251,6 +251,9 @@
           var thankyou = document.getElementById('newsletter-thankyou');
           if (thankyou) {
             thankyou.classList.remove('d-none');
+            setTimeout(function() {
+              thankyou.classList.add('d-none');
+            }, 3000);
           }
           form.style.display = 'none';
           toggleBtn.textContent = 'Subscribe';
