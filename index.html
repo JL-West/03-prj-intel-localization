@@ -163,10 +163,7 @@
             <a href="contact.html" class="btn btn-outline-secondary" role="button">Contact</a>
           </div>
           <!-- Subscription Form (hidden by default) -->
-          <!-- Success Alert (hidden by default) -->
-          <div id="newsletter-success" class="alert alert-success alert-dismissible d-none" role="alert">
-            <strong>Thank you!</strong> You have subscribed to our newsletter.
-          </div>
+          <!-- Success Alert removed: only airplane animation will show -->
           <!-- Airplane animation (hidden by default) -->
           <div id="airplane-animation" style="position: fixed; top: 40px; left: -80px; z-index: 99999; pointer-events: none; display: none;">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,14 +263,6 @@
             airplane.style.transition = 'none';
             airplane.style.transform = 'translateX(0)';
           }, 1400);
-        }
-        // Show and auto-hide the success alert
-        var successAlert = document.getElementById('newsletter-success');
-        if (successAlert) {
-          successAlert.classList.remove('d-none');
-          setTimeout(function() {
-            successAlert.classList.add('d-none');
-          }, 3000);
         }
         form.style.display = 'none';
         toggleBtn.textContent = 'Subscribe';
