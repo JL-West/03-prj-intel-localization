@@ -155,8 +155,13 @@
     <section class="container my-5">
       <div class="row justify-content-center">
         <div class="col-12 col-md-6">
-          <!-- Toggle Button -->
-          <button id="toggle-subscribe" class="btn btn-primary w-100 mb-3" type="button">Subscribe To Our Newsletter!</button>
+          <!-- Button Group: Subscribe, Privacy Policy, Terms of Use, Contact -->
+          <div class="d-flex flex-wrap gap-2 mb-3 justify-content-center">
+            <button id="toggle-subscribe" class="btn btn-primary" type="button">Subscribe To Our Newsletter!</button>
+            <a href="#" class="btn btn-outline-secondary" role="button">Privacy Policy</a>
+            <a href="#" class="btn btn-outline-secondary" role="button">Terms of Use</a>
+            <a href="#" class="btn btn-outline-secondary" role="button">Contact</a>
+          </div>
           <!-- Subscription Form (hidden by default) -->
           <form id="subscribe-form" style="display: none;">
             <h2 class="mb-3">Subscribe to Intel's Newsletter</h2>
