@@ -206,6 +206,8 @@
     </section>
     <!-- Subscription Form Section End -->
   <!-- Simple script to toggle the subscription form -->
+</body>
+  <!-- Simple script to toggle the subscription form -->
   <script>
     // Get the button and form elements
     const toggleBtn = document.getElementById('toggle-subscribe');
@@ -221,6 +223,18 @@
         }
       });
     }
+
+    // Auto-detect language and set direction
+    (function() {
+      // List of RTL language codes
+      const rtlLangs = ['ar', 'he', 'fa', 'ur'];
+      // Get the browser language (e.g., 'en-US', 'ar', etc.)
+      const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      // Check if the language is RTL
+      const isRTL = rtlLangs.some(code => lang.startsWith(code));
+      // Set dir attribute on <html> element
+      document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    })();
   </script>
 </body>
 </html>
